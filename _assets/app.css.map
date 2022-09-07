@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../src/style.css"],
+  "sourcesContent": [".card {\n\tbackground-color: #eaeaea;\n\tborder: 1px solid #bababa;\n\tposition: relative;\n\tpadding: 8px;\n}\n.card + .card {\n\tmargin-top: 8px;\n}\n\n.render-count {\n\tfont-size: 12px;\n\tposition: absolute;\n\ttop: 4px;\n\tright: 4px;\n}\n\noutput {\n\tbackground-color: #ffffff;\n\ttext-align: center;\n\theight: 1.25em;\n\tmin-width: 3ch;\n\tdisplay: inline-block;\n\tvertical-align: middle;\n\tmargin: 0 4px;\n}\n"],
+  "mappings": "AAAA,MACC,yBACA,yBACA,kBAHD,YAMA,YACC,eAGD,cACC,eACA,kBACA,QACA,UAGD,OACC,sBACA,kBACA,cACA,cACA,qBACA,sBAvBD",
+  "names": []
+}
