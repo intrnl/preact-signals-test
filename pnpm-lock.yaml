@@ -1,5 +1,10 @@
 lockfileVersion: 5.4
 
+patchedDependencies:
+  '@preact/signals@1.0.1':
+    hash: vqix5dthtzzhgmqkmfphan5w6u
+    path: patches/@preact__signals@1.0.1.patch
+
 specifiers:
   '@intrnl/esbuild-plugin-build-analysis': ^0.1.2
   '@intrnl/esbuild-plugin-env': ^0.1.3
@@ -11,7 +16,7 @@ specifiers:
   wireit: ^0.7.1
 
 dependencies:
-  '@preact/signals': 1.0.1_preact@10.10.6
+  '@preact/signals': 1.0.1_vqix5dthtzzhgmqkmfphan5w6u_preact@10.10.6
   preact: 10.10.6
 
 devDependencies:
@@ -113,7 +118,7 @@ packages:
     resolution: {integrity: sha512-Gx5zCzjJLnI7ZeS4Z5TKu48vBGe/fqNONxXNmoIToOw0lOz3dN32/Lmfcg408Mf52kwyqWmMRjPJo1paPYhLOg==}
     dev: false
 
-  /@preact/signals/1.0.1_preact@10.10.6:
+  /@preact/signals/1.0.1_vqix5dthtzzhgmqkmfphan5w6u_preact@10.10.6:
     resolution: {integrity: sha512-G1SCckKl1V0AGJ6Ulf8nqLPxyiReoXLqFWAYKMkH4YyUlLQJP+qq8/qcjw0Iqx92f8fyTRnuMLYKSdiqemPeRQ==}
     peerDependencies:
       preact: 10.x
@@ -121,6 +126,7 @@ packages:
       '@preact/signals-core': 1.0.0
       preact: 10.10.6
     dev: false
+    patched: true
 
   /@types/node/18.7.15:
     resolution: {integrity: sha512-XnjpaI8Bgc3eBag2Aw4t2Uj/49lLBSStHWfqKvIuXD7FIrZyMLWp8KuAFHAqxMZYTF9l08N1ctUn9YNybZJVmQ==}
