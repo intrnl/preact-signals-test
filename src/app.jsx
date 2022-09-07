@@ -8,9 +8,11 @@ class RenderCount extends Component {
 	#count = 0;
 
 	render () {
+		const that = this;
+
 		return (
 			<div className='render-count'>
-				rendered {++this.#count} time{this.#count !== 1 && 's'}
+				rendered {++that.#count} time{that.#count !== 1 && 's'}
 			</div>
 		);
 	}
@@ -24,6 +26,8 @@ class TodoList extends Component {
 
 	#handleKeyUp = (ev) => {
 		if (ev.key === 'Enter') {
+			const that = this;
+
 			const target = ev.target;
 			const value = target.value;
 
@@ -36,32 +40,36 @@ class TodoList extends Component {
 				text: value,
 			};
 
-			this.#items.value = [item, ...this.#items.value];
+			that.#items.value = [item, ...that.#items.value];
 			target.value = '';
 		}
 	}
 
 	#removeItem (id) {
-		let items = this.#items.value;
+		const that = this;
+
+		let items = that.#items.value;
 		const index = items.findIndex((item) => item.id === id);
 
 		if (index !== -1) {
 			items = items.slice();
 			items.splice(index, 1);
 
-			this.#items.value = items;
+			that.#items.value = items;
 		}
 	}
 
 	render () {
+		const that = this;
+
 		return (
 			<div className='card'>
-				<input placeholder='I want to...' onKeyUp={this.#handleKeyUp} />
+				<input placeholder='I want to...' onKeyUp={that.#handleKeyUp} />
 
-				<For each={this.#items} fallback={<div>No items</div>}>
+				<For each={that.#items} fallback={<div>No items</div>}>
 					{(item) => (
 						<div key={item.id}>
-							<button onClick={() => this.#removeItem(item.id)}>
+							<button onClick={() => that.#removeItem(item.id)}>
 								x
 							</button>
 							<span>{item.text}</span>
@@ -81,23 +89,25 @@ class App extends Component {
 	#showCount = signal(false);
 
 	render () {
+		const that = this;
+
 		return (
 			<>
 				<div className='card'>
 					<div>
 						<strong>count: </strong>
-						<button onClick={() => this.#count.value--}>&#x2013;</button>
+						<button onClick={() => that.#count.value--}>&#x2013;</button>
 						<output>
-							<Show when={this.#showCount}>
-								<span>{this.#count}</span>
+							<Show when={that.#showCount}>
+								<span>{that.#count}</span>
 							</Show>
 						</output>
-						<button onClick={() => this.#count.value++}>+</button>
-						<button onClick={() => this.#count.value += 2}>+ &#xD7;2</button>
+						<button onClick={() => that.#count.value++}>+</button>
+						<button onClick={() => that.#count.value += 2}>+ &#xD7;2</button>
 						<label>
 							<input
 								type="checkbox"
-								onChange={(ev) => (this.#showCount.value = ev.target.checked)}
+								onChange={(ev) => (that.#showCount.value = ev.target.checked)}
 							/>
 							show value
 						</label>
@@ -105,18 +115,18 @@ class App extends Component {
 					<div>
 						<strong>double count: </strong>
 						<output>
-							{this.#doubleCount}
+							{that.#doubleCount}
 						</output>
 					</div>
 
 					<Switch>
-						<Match when={() => this.#count.value === 0}>
+						<Match when={() => that.#count.value === 0}>
 							<div>Qux!</div>
 						</Match>
-						<Match when={() => this.#count.value % 3 === 0}>
+						<Match when={() => that.#count.value % 3 === 0}>
 							<div>Foo!</div>
 						</Match>
-						<Match when={() => this.#count.value % 5 === 0}>
+						<Match when={() => that.#count.value % 5 === 0}>
 							<div>Bar!</div>
 						</Match>
 						<Match when>
