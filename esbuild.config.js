@@ -9,7 +9,6 @@ import vanillaExtract from '@intrnl/esbuild-plugin-vanilla-extract';
 export let config = {
 	entryPoints: ['src/app.jsx'],
 	outdir: 'dist/_assets',
-	publicPath: '/preact-signals-test/_assets/',
 
 	sourcemap: true,
 
