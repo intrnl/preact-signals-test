@@ -1,0 +1,26 @@
+.card {
+	background-color: #eaeaea;
+	border: 1px solid #bababa;
+	position: relative;
+	padding: 8px;
+}
+.card + .card {
+	margin-top: 8px;
+}
+
+.render-count {
+	font-size: 12px;
+	position: absolute;
+	top: 4px;
+	right: 4px;
+}
+
+output {
+	background-color: #ffffff;
+	text-align: center;
+	height: 1.25em;
+	min-width: 3ch;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 4px;
+}

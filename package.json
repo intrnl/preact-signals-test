@@ -1,0 +1,52 @@
+{
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"dev": "NODE_ENV=development node ./scripts/dev.js",
+		"build": "wireit",
+		"publish": "wireit"
+	},
+	"wireit": {
+		"build": {
+			"command": "NODE_ENV=production node ./scripts/build.js",
+			"clean": "if-file-deleted",
+			"files": [
+				"src/**",
+				"jsconfig.json",
+				"esbuild.config.js"
+			],
+			"output": [
+				"dist/_assets/**"
+			],
+			"packageLocks": [
+				"pnpm-lock.yaml"
+			]
+		},
+		"publish": {
+			"command": "scripts/publish.sh",
+			"dependencies": [
+				"build"
+			],
+			"files": [
+				"dist/**"
+			],
+			"output": [],
+			"packageLocks": [
+				"pnpm-lock.yaml"
+			]
+		}
+	},
+	"dependencies": {
+		"@preact/signals": "^1.0.1",
+		"preact": "^10.10.6"
+	},
+	"devDependencies": {
+		"@intrnl/esbuild-plugin-build-analysis": "^0.1.2",
+		"@intrnl/esbuild-plugin-env": "^0.1.3",
+		"@intrnl/esbuild-plugin-vanilla-extract": "^0.3.0",
+		"@intrnl/netlifydd": "^0.1.5",
+		"@vanilla-extract/css": "^1.9.0",
+		"esbuild": "^0.15.7",
+		"wireit": "^0.7.1"
+	}
+}
