@@ -1,6 +1,5 @@
 import * as esbuild from 'esbuild';
 
-import buildAnalysis from '@intrnl/esbuild-plugin-build-analysis';
 import env from '@intrnl/esbuild-plugin-env';
 import vanillaExtract from '@intrnl/esbuild-plugin-vanilla-extract';
 
@@ -17,7 +16,6 @@ export let config = {
 	},
 
 	plugins: [
-		buildAnalysis(),
 		env(),
 		vanillaExtract(),
 	],
