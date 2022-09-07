@@ -163,9 +163,6 @@ function For ({ each, children, fallback }) {
 function Switch ({ children }) {
 	const array = toChildArray(children);
 
-	let matched = false;
-	let rendered = null;
-
 	for (const node of array) {
 		if (!isValidElement(node) || node.type !== Match) {
 			continue;
@@ -176,13 +173,13 @@ function Switch ({ children }) {
 
 		const value = typeof when === 'function' ? when() : unwrapSignal(when);
 
-		if (value && !matched) {
-			rendered = renderShow(children, value);
-			matched = true;
+		if (value) {
+			const rendered = renderShow(children, value);
+			return rendered;
 		}
 	}
 
-	return rendered;
+	return null;
 }
 
 function Match ({ when, children }) {
