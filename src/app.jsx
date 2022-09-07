@@ -1,4 +1,4 @@
-import { Component, render, toChildArray, isValidElement } from 'preact';
+import { Component, render, cloneElement, toChildArray, isValidElement } from 'preact';
 import { signal, computed, Signal } from '@preact/signals';
 
 import './style.css';
@@ -179,19 +179,16 @@ function Switch ({ children }) {
 		}
 
 		const when = node.props.when;
-		const children = node.props.children;
-
 		const value = typeof when === 'function' ? when() : unwrapSignal(when);
 
 		if (value) {
-			const rendered = renderShow(children, value);
-			return rendered;
+			return cloneElement(node, { _value: value });
 		}
 	}
 
 	return null;
 }
 
-function Match ({ when, children }) {
-	return children;
+function Match ({ when, children, _value }) {
+	return renderShow(children, _value);
 }
