@@ -1,4 +1,4 @@
-import { Component, render } from 'preact';
+import { Component, render, toChildArray, isValidElement } from 'preact';
 import { signal, computed, Signal } from '@preact/signals';
 
 import './style.css';
@@ -109,6 +109,21 @@ class App extends Component {
 						</output>
 					</div>
 
+					<Switch>
+						<Match when={() => this.#count.value === 0}>
+							<div>Qux!</div>
+						</Match>
+						<Match when={() => this.#count.value % 3 === 0}>
+							<div>Foo!</div>
+						</Match>
+						<Match when={() => this.#count.value % 5 === 0}>
+							<div>Bar!</div>
+						</Match>
+						<Match when>
+							<div>Buzz!</div>
+						</Match>
+					</Switch>
+
 					<RenderCount />
 				</div>
 
@@ -143,4 +158,30 @@ function For ({ each, children, fallback }) {
 		: renderShow(fallback);
 
 	return rendered;
+}
+
+function Switch ({ children }) {
+	const array = toChildArray(children);
+
+	for (const node of array) {
+		if (!isValidElement(node) || node.type !== Match) {
+			continue;
+		}
+
+		const when = node.props.when;
+		const children = node.props.children;
+
+		const value = typeof when === 'function' ? when() : unwrapSignal(when);
+
+		if (value) {
+			const rendered = renderShow(children, value);
+			return rendered;
+		}
+	}
+
+	return null;
+}
+
+function Match ({ when, children }) {
+	return children;
 }
