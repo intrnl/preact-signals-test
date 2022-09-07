@@ -1,6 +1,7 @@
 dist/_assets/
 node_modules/
 .wireit/
+deploy/
 
 *.local
 
