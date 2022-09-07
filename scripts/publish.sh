@@ -8,7 +8,7 @@ fi
 
 GIT_COMMIT=$(git rev-parse HEAD)
 
-rsync -AHAX --delete --exclude=.git dist/ deploy/
+rsync -aHAX --delete --exclude=.git dist/ deploy/
 git -C deploy/ add .
 git -C deploy/ commit -m "deploy: ${GIT_COMMIT}"
 git -C deploy/ push
