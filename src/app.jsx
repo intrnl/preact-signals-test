@@ -99,7 +99,7 @@ class App extends Component {
 						<button onClick={() => that.#count.value--}>&#x2013;</button>
 						<output>
 							<Show when={that.#showCount}>
-								<span>{that.#count}</span>
+								{that.#count}
 							</Show>
 						</output>
 						<button onClick={() => that.#count.value++}>+</button>
